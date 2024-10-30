@@ -13,6 +13,8 @@ public class RamoAtividade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="descricao", nullable = false, length = 80)
     private String descricao;
 
     public RamoAtividade() {
