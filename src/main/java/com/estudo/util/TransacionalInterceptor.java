@@ -1,6 +1,7 @@
 package com.estudo.util;
 
 import javax.annotation.Priority;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 
 @Interceptor
 @Transacional
-@Priority(Interceptor.Priority.APPLICATION)
+@Priority(2000)
 public class TransacionalInterceptor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +28,8 @@ public class TransacionalInterceptor implements Serializable {
         try {
             if (!trx.isActive()) {
                 // truque para fazer rollback no que já passou
-                // (senão, um futuro commit confirmaria até mesmo operações sem transação)
+                // (senão, um futuro commit confirmaria até mesmo operações sem
+                // transação)
                 trx.begin();
                 trx.rollback();
 
